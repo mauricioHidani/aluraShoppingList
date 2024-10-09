@@ -20,8 +20,12 @@ public class ShoppingCart {
 		return products;
 	}
 
-	public void addProduct(Product product) {
+	public void addProduct(final Product product) {
 		this.products.add(product);
+	}
+
+	public void addManyProduct(final List<Product> products) {
+		this.products = products;
 	}
 
 	@Override
@@ -31,4 +35,5 @@ public class ShoppingCart {
 		getProducts().forEach(result::append);
 		return result.toString();
 	}
+
 }
