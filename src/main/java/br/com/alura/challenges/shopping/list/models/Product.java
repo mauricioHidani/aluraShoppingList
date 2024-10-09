@@ -1,6 +1,9 @@
 package br.com.alura.challenges.shopping.list.models;
 
+import br.com.alura.challenges.shopping.list.utils.CurrencyFormatUtil;
+
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Product implements Comparable<Product> {
 
@@ -21,18 +24,26 @@ public class Product implements Comparable<Product> {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Product product = (Product) o;
+		return Objects.equals(getName(), product.getName()) && Objects.equals(getPrice(), product.getPrice());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getName(), getPrice());
+	}
+
+	@Override
 	public String toString() {
-		return """
-   			Produto: %s
-   			Preço: R$ % .2%f
-			""".formatted(
-				getName(),
-				getPrice()
-			);
+		return "Produto: %s, Preço: %s" .formatted(getName(), new CurrencyFormatUtil().toFormat(getPrice()));
 	}
 
 	@Override
 	public int compareTo(Product o) {
 		return getPrice().compareTo(o.getPrice());
 	}
+
 }
