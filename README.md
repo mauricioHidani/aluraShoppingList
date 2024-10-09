@@ -17,22 +17,28 @@
 - **Saída da aplicação:** A aplicação deve permitir que o usuário saia do programa.
 
 ## Demonstração
+
 Tela inicial do Shopping List:
+
 ![init screen](https://github.com/user-attachments/assets/f9c11773-4214-44c5-9d71-ee2432bdc986)
 
 Inserção de comprador:
+
 ![input buyer](https://github.com/user-attachments/assets/2381940c-eb7a-4678-9cd6-ba4f9960c51a)
 
 Menu opções carrinho e adição de produto:
+
 ![menu option cart](https://github.com/user-attachments/assets/5b4bfabf-5096-4a8c-99ce-f3deda20fdf2)
 
 Opção mostrar produtos:
+
 ![menu option show products](https://github.com/user-attachments/assets/5048358e-7d75-4c65-99a3-08e3d63ae850)
 
 Opção remover produto:
+
 ![menu option remove product](https://github.com/user-attachments/assets/1b778a64-f9b4-4833-9aef-9520906d701c)
 
 Opção sair/finalizar compra:
-![menu option exit/checkout](https://github.com/user-attachments/assets/ef6679d1-43b5-4ceb-a5c4-9cdc65430fb6)
 
+![menu option exit/checkout](https://github.com/user-attachments/assets/ef6679d1-43b5-4ceb-a5c4-9cdc65430fb6)
 
