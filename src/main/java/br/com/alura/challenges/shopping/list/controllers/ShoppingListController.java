@@ -7,7 +7,6 @@ import br.com.alura.challenges.shopping.list.services.IBuyerService;
 import br.com.alura.challenges.shopping.list.services.IShoppingService;
 import br.com.alura.challenges.shopping.list.utils.CurrencyFormatUtil;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class ShoppingListController {
@@ -59,12 +58,6 @@ public class ShoppingListController {
 		throw new RuntimeException(
 			"%s seu limite do cartão é insuficiente para finalizar a compra.".formatted(buyer.getName())
 		);
-	}
-
-	private BigDecimal getTotalByProducts(final List<Product> products) {
-		return products.stream()
-			.map(Product::getPrice)
-			.reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 }
