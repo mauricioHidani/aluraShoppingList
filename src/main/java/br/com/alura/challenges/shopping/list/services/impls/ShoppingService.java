@@ -59,7 +59,7 @@ public class ShoppingService implements IShoppingService {
 
 			switch (option) {
 				case PUT_IN -> addProducts(products);
-				case TAKE_OUT -> products = removeProduct(products);
+				case TAKE_OUT -> removeProduct(products);
 				case SHOW -> showProducts(products);
 				default -> option = CartOption.EXIT;
 			}
@@ -105,9 +105,23 @@ public class ShoppingService implements IShoppingService {
 		}
 	}
 
-	private List<Product> removeProduct(final List<Product> products) {
+	private void removeProduct(final List<Product> products) {
+		if (products.size() <= 0) {
+			System.out.println("Não ha produtos para serem removidos.");
+			showBreakLine('*', BREAK_LINE_COUNT);
+			return;
+		}
+
 		var target = getProduct();
-		return products.stream().filter(product -> !product.equals(target)).toList();
+		if (products.stream().noneMatch(product -> product.equals(target))) {
+			System.out.println("Não foi possivel encontrar o produto especificado.");
+			showBreakLine('*', BREAK_LINE_COUNT);
+			return;
+		}
+
+		products.removeIf(product -> product.equals(target));
+		System.out.println("Produto removido.");
+		showBreakLine('*', BREAK_LINE_COUNT);
 	}
 
 	private Product getProduct() {
