@@ -58,7 +58,7 @@ public class ShoppingService implements IShoppingService {
 			}
 
 			switch (option) {
-				case PUT_IN -> products.add(addProduct());
+				case PUT_IN -> addProducts(products);
 				case TAKE_OUT -> products = removeProduct(products);
 				case SHOW -> showProducts(products);
 				default -> option = CartOption.EXIT;
@@ -91,19 +91,18 @@ public class ShoppingService implements IShoppingService {
 		showBreakLine('*', BREAK_LINE_COUNT);
 	}
 
-	private Product addProduct() {
-		for (int i = 0; i < 4; i++) {
-			try {
-				return getProduct();
-			}
-			catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
+	private void addProducts(final List<Product> products) {
+		try {
+			final var product = getProduct();
+			products.add(product);
+			System.out.printf("Inserido ao carrinho (%s)\n", product);
+			showBreakLine('*', BREAK_LINE_COUNT);
 		}
-
-		throw new RuntimeException(
-			"Não foi adicionado o produto por não atender aos valores inseridos em 3 tentativas."
-		);
+		catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			System.out.println("Não foi possivel adicionar um produto inválido.");
+			showBreakLine('*', BREAK_LINE_COUNT);
+		}
 	}
 
 	private List<Product> removeProduct(final List<Product> products) {
