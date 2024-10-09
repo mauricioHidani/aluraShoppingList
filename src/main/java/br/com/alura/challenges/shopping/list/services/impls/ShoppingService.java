@@ -39,13 +39,15 @@ public class ShoppingService implements IShoppingService {
 		var option = CartOption.START;
 		while (option != CartOption.EXIT) {
 			System.out.println("""
-    			Opções do carrinho de compras:
-    			1 - Adicionar produto
-    			2 - Tirar produto
-    			3 - Mostrar produto(s)
-    			0 - Sair do carrinho
-				""");
+				Opções do carrinho de compras:
+				1 - Adicionar produto
+				2 - Tirar produto
+				3 - Mostrar produto(s)
+				0 - Sair do carrinho
+				"""
+			);
 
+			System.out.print("Opção: ");
 			var choice = scanner.nextInt();
 			if (choice >= 0 && choice < CartOption.values().length) {
 				option = CartOption.values()[choice];
@@ -74,8 +76,19 @@ public class ShoppingService implements IShoppingService {
 	}
 
 	private void showProducts(final List<Product> products) {
-		Collections.sort(products);
+		if (products.size() <= 0) {
+			System.out.println("Não existem produtos para serem mostrados.");
+			showBreakLine('*', BREAK_LINE_COUNT);
+			return;
+		}
+
+		if (products.size() > 1) {
+			Collections.sort(products);
+		}
 		products.forEach(System.out::println);
+		showBreakLine('-', BREAK_LINE_COUNT);
+		System.out.println("Total: %s".formatted(new CurrencyFormatUtil().toFormat(getTotalBy(products))));
+		showBreakLine('*', BREAK_LINE_COUNT);
 	}
 
 	private Product addProduct() {
