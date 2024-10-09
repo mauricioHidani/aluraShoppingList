@@ -112,6 +112,10 @@ public class ShoppingService implements IShoppingService {
 	}
 
 	private Product getProduct() {
+		if (scanner.hasNextLine()) {
+			scanner.nextLine();
+		}
+
 		System.out.print("Nome do produto: ");
 		final var name = scanner.nextLine();
 		if (name.length() < 3) {
@@ -124,8 +128,8 @@ public class ShoppingService implements IShoppingService {
 			throw new IllegalArgumentException("Um produto não pode possuir um preço negativo.");
 		}
 
-		final var product = new Product(name, price);
-		System.out.println("Produto inserido\n" + product);
+		return new Product(name, price);
+	}
 
 	private void showBreakLine(final Character type, final Integer count) {
 		var chars = new char[count];
