@@ -10,6 +10,8 @@ import java.util.*;
 
 public class ShoppingService implements IShoppingService {
 
+	private final Integer BREAK_LINE_COUNT = 64;
+
 	private final Scanner scanner;
 
 	public ShoppingService(final Scanner scanner) {
@@ -112,7 +114,10 @@ public class ShoppingService implements IShoppingService {
 		final var product = new Product(name, price);
 		System.out.println("Produto inserido\n" + product);
 
-		return product;
+	private void showBreakLine(final Character type, final Integer count) {
+		var chars = new char[count];
+		Arrays.fill(chars, type);
+		System.out.println(new String(chars));
 	}
 
 }
