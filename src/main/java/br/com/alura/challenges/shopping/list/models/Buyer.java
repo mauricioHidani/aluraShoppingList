@@ -1,5 +1,7 @@
 package br.com.alura.challenges.shopping.list.models;
 
+import br.com.alura.challenges.shopping.list.utils.CurrencyFormatUtil;
+
 import java.math.BigDecimal;
 
 public class Buyer {
@@ -23,12 +25,14 @@ public class Buyer {
 	@Override
 	public String toString() {
 		return """
-      		************************************************
-   			Comprador: %s
-   			Limite cartão: R$ .2%f
-   			************************************************
-			""".formatted(
-				getName(), getCardLimit()
+			************************************************
+			Comprador: %s
+			Limite cartão: %s
+			************************************************
+			"""
+			.formatted(
+				getName(),
+				new CurrencyFormatUtil().toFormat(getCardLimit())
 			);
 	}
 }
