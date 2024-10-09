@@ -56,7 +56,8 @@ public class ShoppingListController {
 			return;
 		}
 		throw new RuntimeException(
-			"%s seu limite do cartão é insuficiente para finalizar a compra.".formatted(buyer.getName())
+			"%s seu limite do cartão é insuficiente para finalizar a compra, inicie uma nova compra."
+				.formatted(buyer.getName())
 		);
 	}
 
