@@ -3,12 +3,10 @@ package br.com.alura.challenges.shopping.list.services.impls;
 import br.com.alura.challenges.shopping.list.enums.CartOption;
 import br.com.alura.challenges.shopping.list.models.Product;
 import br.com.alura.challenges.shopping.list.services.IShoppingService;
+import br.com.alura.challenges.shopping.list.utils.CurrencyFormatUtil;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ShoppingService implements IShoppingService {
 
@@ -63,6 +61,14 @@ public class ShoppingService implements IShoppingService {
 			}
 		}
 		return products;
+	}
+
+	@Override
+	public BigDecimal getTotalBy(List<Product> products) {
+		final var result = products.stream()
+			.map(Product::getPrice)
+			.reduce(BigDecimal.ZERO, BigDecimal::add);
+		return result;
 	}
 
 	private void showProducts(final List<Product> products) {

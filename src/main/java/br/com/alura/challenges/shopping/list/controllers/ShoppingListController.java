@@ -25,6 +25,7 @@ public class ShoppingListController {
 
 	public void start() {
 		this.productService.showInitScreen();
+
 		final var buyer = buyerService.input();
 		final ShoppingCart cart = new ShoppingCart(buyer);
 		final List<Product> products = productService.showCartOptions();
@@ -33,15 +34,15 @@ public class ShoppingListController {
 		try {
 			checkCardLimit(buyer, products);
 			System.out.println("""
-				Compra finalizada,
-				Obrigado pela compra %s, volte sempre
-				Total de produtos do carrinho: %d
-				Total comprado: %s
-				""".formatted(
-					buyer.getName(),
-					products.size(),
-					new CurrencyFormatUtil().toFormat(getTotalByProducts(products))
-				)
+					Compra finalizada,
+					Obrigado pela compra %s, volte sempre
+					Total de produtos do carrinho: %d
+					Total comprado: %s
+					""".formatted(
+							buyer.getName(),
+							products.size(),
+							new CurrencyFormatUtil().toFormat(productService.getTotalBy(products))
+					)
 			);
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
@@ -49,7 +50,7 @@ public class ShoppingListController {
 	}
 
 	private void checkCardLimit(final Buyer buyer, final List<Product> products) {
-		var total = getTotalByProducts(products);
+		var total = productService.getTotalBy(products);
 		var cardLimit = buyer.getCardLimit();
 
 		if (cardLimit.compareTo(total) >= 0) {
